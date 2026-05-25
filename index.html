@@ -23,9 +23,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--void);
     color: var(--text);
@@ -34,15 +32,12 @@
     cursor: none;
   }
 
-  /* CUSTOM CURSOR */
   .cursor {
     width: 12px; height: 12px;
     background: var(--accent2);
     border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
     transition: transform 0.1s ease;
     mix-blend-mode: screen;
   }
@@ -50,42 +45,30 @@
     width: 36px; height: 36px;
     border: 1.5px solid var(--accent1);
     border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9998;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
     transition: all 0.15s ease;
     opacity: 0.6;
   }
 
-  /* CANVAS BACKGROUND */
   #bg-canvas {
-    position: fixed;
-    top: 0; left: 0;
+    position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
-    z-index: 0;
-    pointer-events: none;
+    z-index: 0; pointer-events: none;
   }
 
-  /* NOISE OVERLAY */
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.4;
+    pointer-events: none; z-index: 1; opacity: 0.4;
   }
 
-  /* LAYOUT */
   .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
 
-  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 0;
+    z-index: 100; padding: 1.2rem 0;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(139,92,246,0.12);
@@ -122,7 +105,6 @@
   }
   .nav-cta:hover { box-shadow: 0 0 35px rgba(124,58,237,0.7); transform: translateY(-1px); }
 
-  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
@@ -157,20 +139,16 @@
 
   h1 {
     font-size: clamp(3rem, 8vw, 7rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.9s ease 0.4s forwards;
+    font-weight: 800; line-height: 0.95;
+    letter-spacing: -0.04em; margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.9s ease 0.4s forwards;
   }
   h1 .line1 { display: block; color: var(--white); }
   h1 .line2 {
     display: block;
     background: linear-gradient(135deg, var(--accent1) 0%, var(--neon) 50%, var(--accent3) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200%;
+    background-clip: text; background-size: 200%;
     animation: shimmer 3s ease infinite, fadeUp 0.9s ease 0.4s forwards;
   }
   @keyframes shimmer {
@@ -209,6 +187,7 @@
     box-shadow: 0 0 60px rgba(124,58,237,0.8), 0 8px 30px rgba(0,0,0,0.5);
     transform: translateY(-2px);
   }
+  .btn-primary svg { width: 18px; height: 18px; fill: white; }
 
   .btn-secondary {
     display: inline-flex; align-items: center; gap: 0.6rem;
@@ -225,10 +204,8 @@
     transform: translateY(-2px);
     box-shadow: 0 0 30px rgba(139,92,246,0.25);
   }
+  .btn-secondary svg { width: 18px; height: 18px; }
 
-  .btn-icon { font-size: 1.1rem; }
-
-  /* SCROLL INDICATOR */
   .scroll-hint {
     position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
@@ -247,11 +224,30 @@
     100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
   }
 
-  /* FEATURES */
-  .features {
-    padding: 100px 0;
-    position: relative; z-index: 2;
+  /* STATS */
+  .stats {
+    padding: 80px 0; position: relative; z-index: 2;
+    border-top: 1px solid rgba(45,38,96,0.4);
+    border-bottom: 1px solid rgba(45,38,96,0.4);
   }
+  .stats-grid {
+    display: flex; justify-content: center; gap: 6rem; flex-wrap: wrap;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 3rem; font-weight: 800; letter-spacing: -0.04em;
+    background: linear-gradient(135deg, var(--accent2), var(--neon));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; display: block;
+  }
+  .stat-label {
+    font-size: 0.85rem; color: var(--muted);
+    font-family: 'DM Mono', monospace; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-top: 0.3rem;
+  }
+
+  /* FEATURES */
+  .features { padding: 100px 0; position: relative; z-index: 2; }
   .section-label {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
@@ -260,12 +256,22 @@
   .section-title {
     font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 800; letter-spacing: -0.03em;
-    color: var(--white); margin-bottom: 1rem;
-    line-height: 1.1;
+    color: var(--white); margin-bottom: 1rem; line-height: 1.1;
   }
   .section-sub {
-    color: var(--muted); font-size: 1rem; max-width: 500px; line-height: 1.7;
-    margin-bottom: 4rem;
+    color: var(--muted); font-size: 1rem; max-width: 500px;
+    line-height: 1.7; margin-bottom: 4rem;
+  }
+  .section-divider {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--accent1), var(--neon));
+    border-radius: 2px; margin-bottom: 1.5rem; position: relative;
+  }
+  .section-divider::after {
+    content: ''; position: absolute; right: -20px; top: 50%;
+    transform: translateY(-50%);
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--neon); box-shadow: 0 0 8px var(--neon);
   }
 
   .features-grid {
@@ -274,8 +280,7 @@
     gap: 1.5px;
     background: rgba(45,38,96,0.3);
     border: 1px solid rgba(45,38,96,0.5);
-    border-radius: 16px;
-    overflow: hidden;
+    border-radius: 16px; overflow: hidden;
   }
   .feat-card {
     background: var(--deep);
@@ -284,8 +289,7 @@
     transition: background 0.4s ease;
   }
   .feat-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--accent1), transparent);
     opacity: 0; transition: opacity 0.4s;
@@ -293,43 +297,41 @@
   .feat-card:hover { background: var(--surface); }
   .feat-card:hover::before { opacity: 1; }
   .feat-card::after {
-    content: '';
-    position: absolute; bottom: -60px; right: -60px;
+    content: ''; position: absolute; bottom: -60px; right: -60px;
     width: 120px; height: 120px;
     background: radial-gradient(circle, rgba(139,92,246,0.12), transparent 70%);
     transition: all 0.5s ease; border-radius: 50%;
   }
   .feat-card:hover::after { bottom: -30px; right: -30px; width: 160px; height: 160px; }
 
-  .feat-icon {
-    font-size: 2rem; margin-bottom: 1.2rem;
-    display: block;
+  .feat-icon-wrap {
+    width: 52px; height: 52px;
+    background: rgba(139,92,246,0.12);
+    border: 1px solid rgba(139,92,246,0.2);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.4rem;
   }
+  .feat-icon-wrap svg { width: 24px; height: 24px; stroke: var(--accent2); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
   .feat-name {
     font-size: 1.1rem; font-weight: 700; color: var(--white);
     margin-bottom: 0.6rem; letter-spacing: -0.01em;
   }
   .feat-desc {
-    font-size: 0.9rem; color: var(--muted); line-height: 1.6;
-    font-weight: 400;
+    font-size: 0.9rem; color: var(--muted); line-height: 1.6; font-weight: 400;
   }
 
-  /* DOWNLOAD SECTION */
-  .download {
-    padding: 100px 0;
-    position: relative; z-index: 2;
-  }
+  /* DOWNLOAD */
+  .download { padding: 100px 0; position: relative; z-index: 2; }
   .download-card {
     background: linear-gradient(135deg, var(--surface), var(--panel));
     border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 4rem;
-    position: relative; overflow: hidden;
-    text-align: center;
+    border-radius: 24px; padding: 4rem;
+    position: relative; overflow: hidden; text-align: center;
   }
   .download-card::before {
-    content: '';
-    position: absolute; top: -50%; left: -50%;
+    content: ''; position: absolute; top: -50%; left: -50%;
     width: 200%; height: 200%;
     background: radial-gradient(ellipse at center, rgba(124,58,237,0.12) 0%, transparent 60%);
     animation: rotateBg 10s linear infinite;
@@ -342,8 +344,7 @@
   .download-title {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800; letter-spacing: -0.04em;
-    color: var(--white); margin-bottom: 1rem;
-    line-height: 1.1;
+    color: var(--white); margin-bottom: 1rem; line-height: 1.1;
   }
   .download-title span {
     background: linear-gradient(135deg, var(--accent1), var(--neon));
@@ -364,29 +365,23 @@
     font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em;
   }
 
-  /* DISCORD SECTION */
-  .discord {
-    padding: 60px 0 100px;
-    position: relative; z-index: 2;
-  }
+  /* DISCORD */
+  .discord { padding: 60px 0 100px; position: relative; z-index: 2; }
   .discord-card {
     background: linear-gradient(135deg, rgba(88,101,242,0.1), rgba(139,92,246,0.08));
     border: 1px solid rgba(88,101,242,0.25);
-    border-radius: 20px;
-    padding: 3.5rem;
-    display: flex; align-items: center; gap: 3rem;
-    flex-wrap: wrap;
+    border-radius: 20px; padding: 3.5rem;
+    display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
   }
   .discord-icon-wrap {
-    flex-shrink: 0;
-    width: 90px; height: 90px;
+    flex-shrink: 0; width: 90px; height: 90px;
     background: linear-gradient(135deg, #5865F2, #7289DA);
     border-radius: 20px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 2.8rem;
     box-shadow: 0 0 40px rgba(88,101,242,0.5);
     animation: float 3s ease infinite;
   }
+  .discord-icon-wrap svg { width: 44px; height: 44px; fill: white; }
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
@@ -406,55 +401,27 @@
     box-shadow: 0 0 30px rgba(88,101,242,0.4);
     transition: all 0.3s ease; flex-shrink: 0;
   }
+  .btn-discord svg { width: 20px; height: 20px; fill: white; }
   .btn-discord:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 50px rgba(88,101,242,0.7);
   }
 
-  /* STATS */
-  .stats {
-    padding: 80px 0;
-    position: relative; z-index: 2;
-    border-top: 1px solid rgba(45,38,96,0.4);
-    border-bottom: 1px solid rgba(45,38,96,0.4);
-  }
-  .stats-grid {
-    display: flex; justify-content: center; gap: 6rem; flex-wrap: wrap;
-    text-align: center;
-  }
-  .stat-num {
-    font-size: 3rem; font-weight: 800; letter-spacing: -0.04em;
-    background: linear-gradient(135deg, var(--accent2), var(--neon));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: block;
-  }
-  .stat-label {
-    font-size: 0.85rem; color: var(--muted);
-    font-family: 'DM Mono', monospace; letter-spacing: 0.08em;
-    text-transform: uppercase; margin-top: 0.3rem;
-  }
-
-  /* FOOTER */
   footer {
-    padding: 3rem 0;
-    text-align: center;
+    padding: 3rem 0; text-align: center;
     position: relative; z-index: 2;
-    color: var(--muted);
-    font-size: 0.85rem;
+    color: var(--muted); font-size: 0.85rem;
     font-family: 'DM Mono', monospace;
     border-top: 1px solid rgba(45,38,96,0.3);
   }
   footer a { color: var(--accent2); text-decoration: none; }
 
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; } to { opacity: 1; }
   }
 
   .reveal {
@@ -466,13 +433,8 @@
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
-  .reveal-delay-5 { transition-delay: 0.5s; }
 
-  /* GLOW ORBS */
-  .orb {
-    position: fixed; border-radius: 50%;
-    filter: blur(80px); pointer-events: none; z-index: 0;
-  }
+  .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
   .orb-1 {
     width: 500px; height: 500px;
     background: radial-gradient(circle, rgba(124,58,237,0.18), transparent 70%);
@@ -494,21 +456,6 @@
   @keyframes orbFloat1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,20px)} }
   @keyframes orbFloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-30px)} }
   @keyframes orbFloat3 { 0%,100%{transform:translate(-50%,-50%)} 50%{transform:translate(-50%,-55%)} }
-
-  /* DIVIDER */
-  .section-divider {
-    width: 60px; height: 3px;
-    background: linear-gradient(90deg, var(--accent1), var(--neon));
-    border-radius: 2px; margin-bottom: 1.5rem;
-    position: relative;
-  }
-  .section-divider::after {
-    content: ''; position: absolute; right: -20px; top: 50%;
-    transform: translateY(-50%);
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--neon);
-    box-shadow: 0 0 8px var(--neon);
-  }
 </style>
 </head>
 <body>
@@ -516,12 +463,10 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- Orbs -->
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
 <div class="orb orb-3"></div>
 
-<!-- Particle Canvas -->
 <canvas id="bg-canvas"></canvas>
 
 <!-- NAV -->
@@ -533,7 +478,7 @@
       <li><a href="#download">Download</a></li>
       <li><a href="#community">Community</a></li>
     </ul>
-    <a href="#download" class="nav-cta">Get it Free →</a>
+    <a href="#download" class="nav-cta">Get it Free</a>
   </div>
 </nav>
 
@@ -542,21 +487,23 @@
   <div class="hero-inner">
     <div class="badge">
       <span class="badge-dot"></span>
-      Free — Always
+      Free Forever
     </div>
     <h1>
       <span class="line1">Dominate with</span>
       <span class="line2">Luno Ware</span>
     </h1>
     <p class="hero-desc">
-      The most powerful free Roblox external. Undetected, lightning-fast, and packed with features — completely free, forever.
+      A powerful free Roblox external built for people who want results. No paywalls, no subscriptions, no compromises.
     </p>
     <div class="hero-btns">
       <a href="#download" class="btn-primary">
-        <span class="btn-icon">⬇</span> Download Now
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v13m0 0l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
+        Download Now
       </a>
       <a href="#community" class="btn-secondary">
-        <span class="btn-icon">💬</span> Join Discord
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+        Join Discord
       </a>
     </div>
   </div>
@@ -583,8 +530,8 @@
         <span class="stat-label">Community Support</span>
       </div>
       <div class="reveal reveal-delay-4">
-        <span class="stat-num">∞</span>
-        <span class="stat-label">Scripts Supported</span>
+        <span class="stat-num">Fast</span>
+        <span class="stat-label">Injection Speed</span>
       </div>
     </div>
   </div>
@@ -597,39 +544,64 @@
       <div class="section-divider"></div>
       <div class="section-label">What You Get</div>
       <h2 class="section-title">Built to be the best.<br>Priced at zero.</h2>
-      <p class="section-sub">Every feature you'd pay for elsewhere — Luno Ware gives you for free, no strings attached.</p>
+      <p class="section-sub">Every feature you would normally pay for, completely free. No strings attached, no hidden catches.</p>
     </div>
     <div class="features-grid">
+
       <div class="feat-card reveal reveal-delay-1">
-        <span class="feat-icon">⚡</span>
+        <div class="feat-icon-wrap">
+          <!-- Lightning bolt -->
+          <svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+        </div>
         <div class="feat-name">Lightning Execution</div>
-        <p class="feat-desc">Blazing-fast script execution engine. Run your scripts instantly with no lag or delays.</p>
+        <p class="feat-desc">Blazing fast injection engine with near zero delay. It works when you need it to, every single time.</p>
       </div>
+
       <div class="feat-card reveal reveal-delay-2">
-        <span class="feat-icon">🛡️</span>
+        <div class="feat-icon-wrap">
+          <!-- Shield -->
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
         <div class="feat-name">Undetected</div>
-        <p class="feat-desc">Advanced bypass system keeps you protected. Regular updates to stay ahead of detection.</p>
+        <p class="feat-desc">Advanced bypass keeps you under the radar. We push updates regularly to stay ahead of any patches.</p>
       </div>
+
       <div class="feat-card reveal reveal-delay-3">
-        <span class="feat-icon">📜</span>
-        <div class="feat-name">Script Hub</div>
-        <p class="feat-desc">Access a massive built-in library of scripts for popular games — ready to inject in one click.</p>
+        <div class="feat-icon-wrap">
+          <!-- Refresh -->
+          <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"></path></svg>
+        </div>
+        <div class="feat-name">Auto Updates</div>
+        <p class="feat-desc">Luno Ware keeps itself up to date after every Roblox patch. You never have to do anything manually.</p>
       </div>
+
       <div class="feat-card reveal reveal-delay-1">
-        <span class="feat-icon">🎮</span>
-        <div class="feat-name">Game Support</div>
-        <p class="feat-desc">Optimized for all major Roblox games. Broad compatibility out of the box.</p>
+        <div class="feat-icon-wrap">
+          <!-- Sliders -->
+          <svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+        </div>
+        <div class="feat-name">Full Configuration</div>
+        <p class="feat-desc">A clean and easy to use UI that gives you full control. Tweak everything exactly how you want it.</p>
       </div>
+
       <div class="feat-card reveal reveal-delay-2">
-        <span class="feat-icon">🔄</span>
-        <div class="feat-name">Auto-Update</div>
-        <p class="feat-desc">Automatic updates keep you current after every Roblox patch. Zero manual effort required.</p>
+        <div class="feat-icon-wrap">
+          <!-- Monitor -->
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        </div>
+        <div class="feat-name">Broad Game Support</div>
+        <p class="feat-desc">Works across all major Roblox titles right out of the box. No extra setup needed on your end.</p>
       </div>
+
       <div class="feat-card reveal reveal-delay-3">
-        <span class="feat-icon">🌐</span>
+        <div class="feat-icon-wrap">
+          <!-- Users -->
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87"></path><path d="M16 3.13a4 4 0 010 7.75"></path></svg>
+        </div>
         <div class="feat-name">Active Community</div>
-        <p class="feat-desc">Join thousands of users sharing scripts, tips, and support in our Discord server daily.</p>
+        <p class="feat-desc">Thousands of users online daily sharing tips, updates and helping each other out in our Discord.</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -639,16 +611,16 @@
   <div class="container">
     <div class="download-card reveal">
       <div class="download-card-inner">
-        <div class="section-label">Ready to Play?</div>
+        <div class="section-label">Ready to Go</div>
         <h2 class="download-title">Download<br><span>Luno Ware</span></h2>
-        <p class="download-sub">Free to download, free to use. Always. No subscriptions, no paywalls — just pure power.</p>
+        <p class="download-sub">Completely free to download and use. No account needed, no subscriptions, just download and you are good to go.</p>
         <div class="download-btns">
           <a href="#" class="btn-primary" id="dl-btn">
-            <span class="btn-icon">⬇</span> Download Launcher
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v13m0 0l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
+            Download Launcher
           </a>
         </div>
-        <!-- UPDATE THIS LINE with your actual download link -->
-        <span class="version-tag">Replace href="#" above with your actual download link</span>
+        <span class="version-tag">Update the href above with your download link</span>
       </div>
     </div>
   </div>
@@ -658,22 +630,23 @@
 <section class="discord" id="community">
   <div class="container">
     <div class="discord-card reveal">
-      <div class="discord-icon-wrap">💬</div>
+      <div class="discord-icon-wrap">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+      </div>
       <div class="discord-text">
         <h3>Join the Community</h3>
-        <p>Get support, share scripts, stay updated on new releases, and connect with thousands of Luno Ware users in our Discord.</p>
+        <p>Get support, stay updated on new releases and connect with thousands of other Luno Ware users. We are active every day.</p>
       </div>
-      <!-- UPDATE THIS with your actual Discord invite link -->
-      <a href="https://discord.gg/Sz9nStCXZb class="btn-discord" target="_blank" rel="noopener">
-        Join Discord →
+      <a href="https://discord.gg/Sz9nStCXZb" class="btn-discord" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+        Join Discord
       </a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2026 <a href="#">Luno Ware</a> — Free Roblox External &nbsp;·&nbsp; Not affiliated with Roblox Corporation</p>
+  <p>2026 <a href="#">Luno Ware</a> &nbsp;&middot;&nbsp; Free Roblox External &nbsp;&middot;&nbsp; Not affiliated with Roblox Corporation</p>
 </footer>
 
 <script>
@@ -711,17 +684,13 @@
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
   let W, H, particles = [];
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
   resize();
   window.addEventListener('resize', resize);
   class Particle {
     constructor() { this.reset(); }
     reset() {
-      this.x = Math.random() * W;
-      this.y = Math.random() * H;
+      this.x = Math.random() * W; this.y = Math.random() * H;
       this.r = Math.random() * 1.5 + 0.3;
       this.vx = (Math.random() - 0.5) * 0.3;
       this.vy = (Math.random() - 0.5) * 0.3;
@@ -746,12 +715,12 @@
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const dist = Math.sqrt(dx*dx + dy*dy);
         if (dist < 100) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(139,92,246,${0.06 * (1 - dist / 100)})`;
+          ctx.strokeStyle = `rgba(139,92,246,${0.06 * (1 - dist/100)})`;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
@@ -776,8 +745,7 @@
   // NAV SCROLL
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
-    nav.style.background = window.scrollY > 50
-      ? 'rgba(5,3,15,0.95)' : 'rgba(5,3,15,0.7)';
+    nav.style.background = window.scrollY > 50 ? 'rgba(5,3,15,0.95)' : 'rgba(5,3,15,0.7)';
   });
 </script>
 </body>
